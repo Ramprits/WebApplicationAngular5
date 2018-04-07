@@ -31,7 +31,6 @@ namespace WebApplicationUpload.Controllers
             return Ok(getImages);
         }
         [HttpPost, DisableRequestSizeLimit]
-
         public async Task Upload(IFormFile file)
         {
             if (file == null) throw new Exception("File is null");
@@ -42,7 +41,6 @@ namespace WebApplicationUpload.Controllers
                 using (var binaryReader = new BinaryReader(stream))
                 {
                     var fileContent = binaryReader.ReadBytes((int)file.Length);
-                    //await _uploadService.AddFile(fileContent, file.FileName, file.ContentType);
                     await _context.Images.AddAsync(new Image
                     {
                         ContentType = file.ContentType,
